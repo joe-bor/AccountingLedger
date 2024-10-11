@@ -12,11 +12,23 @@ public class App {
 
 
     public static void main(String[] args) {
+        greetings();
         do {
             homeScreen();
         } while (isAppRunning);
     }
 
+    private static void greetings(){
+        System.out.println("""
+                
+                ====== Accounting Ledger =====
+                This
+                is
+                just
+                a
+                placeholder.
+                """);
+    }
     private static void homeScreen() {
         System.out.println("""
                 
