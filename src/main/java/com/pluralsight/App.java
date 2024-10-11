@@ -8,6 +8,8 @@ public class App {
 
     public static void main(String[] args) {
         homeScreen();
+        var x = new Product("description", "amazon", 1.23f);
+        System.out.println(x);
     }
 
     static void homeScreen() {
@@ -20,4 +22,5 @@ public class App {
                 [X] - Exit
                 """);
     }
+
 }
