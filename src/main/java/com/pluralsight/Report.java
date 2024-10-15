@@ -62,7 +62,7 @@ public class Report {
             case "2" -> showPreviousMonth();
             case "3" -> showYearToDate();
             case "4" -> showPreviousYear();
-            case "5" -> System.out.println("Search By Vendor");
+            case "5" -> showSearchByVendor();
             case "0" -> quitReportScreen();
             default -> System.err.println("Invalid Options. Please Try Again! ");
         }
@@ -138,10 +138,23 @@ public class Report {
         }
     }
 
-    public void showByVendor() {
-    }
+    public void showSearchByVendor() {
+        System.out.println("Please provide the vendor name: ");
+        Scanner scanner = new Scanner(System.in);
+        String vendorName = scanner.nextLine().trim();
+        int foundTransactionCount = 0;
 
-    public void searchByVendor() {
+        System.out.println("Transactions sorted by provided vendor name: ");
+        for (Transaction transaction : this.getTransactionList()){
+            if (transaction.getProduct().vendor().contains(vendorName)){
+                System.out.println(transaction);
+                foundTransactionCount++;
+            }
+        }
+
+        if (foundTransactionCount == 0){
+            System.out.println("No entries found.");
+        }
     }
 
     public void quitReportScreen() {
