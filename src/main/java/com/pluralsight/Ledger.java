@@ -41,8 +41,8 @@ public class Ledger {
 
         switch (option) {
             case "A" -> displayAllEntries();
-            case "D" -> System.out.println("Deposits");
-            case "P" -> System.out.println("Payments");
+            case "D" -> displayDeposits();
+            case "P" -> displayPayments();
             case "R" -> System.out.println("Reports");
             case "H" -> System.out.println("Go back to home screen");
             default -> System.err.println("Invalid option. Please try again!");
@@ -50,8 +50,31 @@ public class Ledger {
     }
 
     public void displayAllEntries(){
+        System.out.println("Showing all entries:");
         for (Transaction transaction : this.getTransactionList()){
             System.out.println(transaction);
         }
     }
+
+    public void displayDeposits(){
+        System.out.println("Showing All Deposits:");
+
+        // iterate through transaction list
+        // filter products whose price are positive
+        for (Transaction transaction : this.getTransactionList()){
+            if (transaction.getProduct().price() > 0) {
+                System.out.println(transaction);
+            }
+        }
+    }
+
+    public void displayPayments(){
+        System.out.println("Showing All Payments:");
+        for (Transaction transaction : this.getTransactionList()){
+            if (transaction.getProduct().price() < 0) {
+                System.out.println(transaction);
+            }
+        }
+    }
+
 }

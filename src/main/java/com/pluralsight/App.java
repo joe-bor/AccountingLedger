@@ -72,6 +72,7 @@ public class App {
     }
 
     // TODO: merge with makePayment() and encapsulate in Ledger + enforce +/- floats
+    // TODO: Add a formatter for the entries (eg. capitalize 1st letter of each word)
     private static void addDeposit() {
         // prompt user
         System.out.println("What are you depositing?");
