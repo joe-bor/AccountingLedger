@@ -41,4 +41,9 @@ public class Transaction {
     public void setProduct(Product product) {
         this.product = product;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s on %s at %s", this.getProduct(), this.getTransactionDate(), this.getTransactionTime());
+    }
 }

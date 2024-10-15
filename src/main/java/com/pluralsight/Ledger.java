@@ -40,7 +40,7 @@ public class Ledger {
         String option = scanner.nextLine().trim().toUpperCase();
 
         switch (option) {
-            case "A" -> System.out.println("All entries");
+            case "A" -> displayAllEntries();
             case "D" -> System.out.println("Deposits");
             case "P" -> System.out.println("Payments");
             case "R" -> System.out.println("Reports");
