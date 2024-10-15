@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Ledger {
     private List<Transaction> transactionList = new ArrayList<>();
     private boolean isLedgerScreenShown = false;
-
+    private Report report = new Report();
 
     // CONSTRUCTOR(S):
     public Ledger(List<Transaction> transactionList) {
@@ -48,7 +48,7 @@ public class Ledger {
                     """);
             this.setLedgerScreenShown(true);
             executeOptions();
-        } while (this.isLedgerScreenShown);
+        } while (this.isLedgerScreenShown());
     }
 
     public void executeOptions() {
@@ -59,9 +59,9 @@ public class Ledger {
             case "A" -> displayAllEntries();
             case "D" -> displayDeposits();
             case "P" -> displayPayments();
-            case "R" -> System.out.println("Reports");
+            case "R" -> report.displayScreen();
             case "H" -> returnToHomeScreen();
-            default -> System.err.println("Invalid option. Please try again!");
+            case null, default -> System.err.println("Invalid option. Please try again!");
         }
     }
 
