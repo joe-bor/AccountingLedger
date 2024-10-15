@@ -6,9 +6,21 @@ import java.util.Scanner;
 
 public class Ledger {
     private List<Transaction> transactionList = new ArrayList<>();
+    private boolean isLedgerScreenShown = false;
 
+
+    // CONSTRUCTOR(S):
     public Ledger(List<Transaction> transactionList) {
         this.transactionList = transactionList;
+    }
+
+    // GETTERS & SETTERS:
+    public boolean isLedgerScreenShown() {
+        return isLedgerScreenShown;
+    }
+
+    public void setLedgerScreenShown(boolean ledgerScreenShown) {
+        isLedgerScreenShown = ledgerScreenShown;
     }
 
     public List<Transaction> getTransactionList() {
@@ -19,20 +31,24 @@ public class Ledger {
         this.transactionList = transactionList;
     }
 
+    // OTHER METHODS:
     public void displayScreen() {
-        System.out.println("""
-                
-                ***** Ledger Screen *****
-                Which entries would you like to see? Newest entries are shown first.
-                
-                [A] - All entries
-                [D] - Deposits
-                [P] - Payments
-                [R] - Reports
-                [H] - Go back to Home Screen
-                
-                """);
-        executeOptions();
+        do {
+            System.out.println("""
+                    
+                    ----- Ledger Screen -----
+                    Which entries would you like to see? Newest entries are shown first.
+                    
+                    [A] - All entries
+                    [D] - Deposits
+                    [P] - Payments
+                    [R] - Reports
+                    [H] - Go back to Home Screen
+                    
+                    """);
+            this.setLedgerScreenShown(true);
+            executeOptions();
+        } while (this.isLedgerScreenShown);
     }
 
     public void executeOptions() {
@@ -44,7 +60,7 @@ public class Ledger {
             case "D" -> displayDeposits();
             case "P" -> displayPayments();
             case "R" -> System.out.println("Reports");
-            case "H" -> System.out.println("Go back to home screen");
+            case "H" -> returnToHomeScreen();
             default -> System.err.println("Invalid option. Please try again!");
         }
     }
@@ -77,4 +93,8 @@ public class Ledger {
         }
     }
 
+    public void returnToHomeScreen(){
+        System.out.println("Switching to Home Screen...");
+        this.setLedgerScreenShown(false);
+    }
 }
