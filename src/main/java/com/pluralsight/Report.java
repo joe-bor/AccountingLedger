@@ -61,7 +61,7 @@ public class Report {
             case "1" -> showMonthToDate();
             case "2" -> showPreviousMonth();
             case "3" -> showYearToDate();
-            case "4" -> System.out.println("Previous Year");
+            case "4" -> showPreviousYear();
             case "5" -> System.out.println("Search By Vendor");
             case "0" -> quitReportScreen();
             default -> System.err.println("Invalid Options. Please Try Again! ");
@@ -117,6 +117,23 @@ public class Report {
         }
 
         if (foundTransactionCount == 0) {
+            System.out.println("No entries found.");
+        }
+    }
+
+    public void showPreviousYear(){
+        int previousYear = LocalDate.now().getYear() - 1;
+        int foundTransactionCount = 0;
+
+        System.out.printf("Showing transactions from last year (%d)\n", previousYear);
+        for (Transaction transaction : this.getTransactionList()){
+            if (transaction.getTransactionDate().getYear() == previousYear){
+                System.out.println(transaction);
+                foundTransactionCount++;
+            }
+        }
+
+        if (foundTransactionCount == 0){
             System.out.println("No entries found.");
         }
     }
