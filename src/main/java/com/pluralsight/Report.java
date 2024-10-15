@@ -1,10 +1,21 @@
 package com.pluralsight;
 
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Report {
     private boolean isReportsScreenShown = false;
+    private List<Transaction> transactionList = new ArrayList<>();
 
+    // CONSTRUCTOR(S):
+    Report(List<Transaction> transactionList){
+        this.transactionList = transactionList;
+    }
+
+    // GETTERS & SETTERS:
     public boolean isReportsScreenShown() {
         return isReportsScreenShown;
     }
@@ -13,6 +24,15 @@ public class Report {
         isReportsScreenShown = reportsScreenShown;
     }
 
+    public List<Transaction> getTransactionList() {
+        return transactionList;
+    }
+
+    public void setTransactionList(List<Transaction> transactionList) {
+        this.transactionList = transactionList;
+    }
+
+    // OTHER METHODS:
     public void displayScreen() {
         do {
             System.out.println("""
@@ -38,9 +58,9 @@ public class Report {
         String option = scanner.nextLine();
 
         switch (option) {
-            case "1" -> System.out.println("Month To Date");
-            case "2" -> System.out.println("Previous Month");
-            case "3" -> System.out.println(" Year To Date");
+            case "1" -> showMonthToDate();
+            case "2" -> showPreviousMonth();
+            case "3" -> showYearToDate();
             case "4" -> System.out.println("Previous Year");
             case "5" -> System.out.println("Search By Vendor");
             case "0" -> quitReportScreen();
@@ -48,13 +68,57 @@ public class Report {
         }
     }
 
-    public void showMontToDate() {
+    public void showMonthToDate() {
+        Month currentMonth = LocalDate.now().getMonth();
+        int foundTransactionCount = 0;
+
+        System.out.println(String.format("Showing all entries for the month of %s: ", currentMonth));
+        for (Transaction transaction : this.getTransactionList()){
+            if (transaction.getTransactionDate().getMonth() == currentMonth){
+                System.out.println(transaction);
+                foundTransactionCount++;
+            }
+        }
+
+        if (foundTransactionCount == 0) {
+            System.out.println("No entries found.");
+        }
+
+
     }
 
     public void showPreviousMonth() {
+        Month previousMonth = LocalDate.now().getMonth().minus(1);
+        int foundTransactionCount = 0;
+
+        System.out.println(String.format("Showing all entries for the month of %s: ", previousMonth));
+        for (Transaction transaction : this.getTransactionList()){
+            if (transaction.getTransactionDate().getMonth() == previousMonth){
+                System.out.println(transaction);
+                foundTransactionCount++;
+            }
+        }
+
+        if (foundTransactionCount == 0) {
+            System.out.println("No entries found.");
+        }
     }
 
     public void showYearToDate() {
+        int currentMonth = LocalDate.now().getMonthValue();
+        int foundTransactionCount = 0;
+
+        System.out.println("Here are all the entries for the current year:");
+        for (Transaction transaction : this.getTransactionList()){
+            if (transaction.getTransactionDate().getMonthValue() <= currentMonth){
+                System.out.println(transaction);
+                foundTransactionCount++;
+            }
+        }
+
+        if (foundTransactionCount == 0) {
+            System.out.println("No entries found.");
+        }
     }
 
     public void showByVendor() {

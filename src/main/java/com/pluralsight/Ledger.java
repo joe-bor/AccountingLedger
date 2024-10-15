@@ -7,11 +7,12 @@ import java.util.Scanner;
 public class Ledger {
     private List<Transaction> transactionList = new ArrayList<>();
     private boolean isLedgerScreenShown = false;
-    private Report report = new Report();
+    private Report report = new Report(transactionList);
 
     // CONSTRUCTOR(S):
     public Ledger(List<Transaction> transactionList) {
         this.transactionList = transactionList;
+        this.report = new Report(transactionList);
     }
 
     // GETTERS & SETTERS:
