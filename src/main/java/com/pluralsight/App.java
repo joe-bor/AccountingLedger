@@ -71,6 +71,7 @@ public class App {
         App.isAppRunning = isAppRunning;
     }
 
+    // TODO: merge with makePayment() and encapsulate in Ledger + enforce +/- floats
     private static void addDeposit() {
         // prompt user
         System.out.println("What are you depositing?");
