@@ -21,11 +21,9 @@ public class App {
         System.out.println("""
                 
                 ====== Accounting Ledger =====
-                This
-                is
-                just
-                a
-                placeholder.
+                
+                Welcome to your personal accounting ledger.
+                Track deposits, payments, and review your ledger with ease.
                 """);
     }
 
