@@ -11,7 +11,7 @@ public class Report {
     private List<Transaction> transactionList = new ArrayList<>();
 
     // CONSTRUCTOR(S):
-    Report(List<Transaction> transactionList){
+    Report(List<Transaction> transactionList) {
         this.transactionList = transactionList;
     }
 
@@ -76,8 +76,8 @@ public class Report {
         int foundTransactionCount = 0;
 
         System.out.println(String.format("Showing all entries for the month of %s: ", currentMonth));
-        for (Transaction transaction : this.getTransactionList()){
-            if (transaction.getTransactionDate().getMonth() == currentMonth && transaction.getTransactionDate().getYear() == currentYear){
+        for (Transaction transaction : this.getTransactionList()) {
+            if (transaction.getTransactionDate().getMonth() == currentMonth && transaction.getTransactionDate().getYear() == currentYear) {
                 System.out.println(transaction);
                 foundTransactionCount++;
             }
@@ -86,8 +86,6 @@ public class Report {
         if (foundTransactionCount == 0) {
             System.out.println("No entries found.");
         }
-
-
     }
 
     public void showPreviousMonth() {
@@ -95,8 +93,8 @@ public class Report {
         int foundTransactionCount = 0;
 
         System.out.println(String.format("Showing all entries for the month of %s: ", previousMonth));
-        for (Transaction transaction : this.getTransactionList()){
-            if (transaction.getTransactionDate().getMonth() == previousMonth){
+        for (Transaction transaction : this.getTransactionList()) {
+            if (transaction.getTransactionDate().getMonth() == previousMonth) {
                 System.out.println(transaction);
                 foundTransactionCount++;
             }
@@ -112,8 +110,8 @@ public class Report {
         int foundTransactionCount = 0;
 
         System.out.println("Here are all the entries for the current year:");
-        for (Transaction transaction : this.getTransactionList()){
-            if (transaction.getTransactionDate().getMonthValue() <= currentMonth){
+        for (Transaction transaction : this.getTransactionList()) {
+            if (transaction.getTransactionDate().getMonthValue() <= currentMonth) {
                 System.out.println(transaction);
                 foundTransactionCount++;
             }
@@ -124,19 +122,19 @@ public class Report {
         }
     }
 
-    public void showPreviousYear(){
+    public void showPreviousYear() {
         int previousYear = LocalDate.now().getYear() - 1;
         int foundTransactionCount = 0;
 
         System.out.printf("Showing transactions from last year (%d)\n", previousYear);
-        for (Transaction transaction : this.getTransactionList()){
-            if (transaction.getTransactionDate().getYear() == previousYear){
+        for (Transaction transaction : this.getTransactionList()) {
+            if (transaction.getTransactionDate().getYear() == previousYear) {
                 System.out.println(transaction);
                 foundTransactionCount++;
             }
         }
 
-        if (foundTransactionCount == 0){
+        if (foundTransactionCount == 0) {
             System.out.println("No entries found.");
         }
     }
@@ -148,14 +146,14 @@ public class Report {
         int foundTransactionCount = 0;
 
         System.out.println("Transactions sorted by provided vendor name: ");
-        for (Transaction transaction : this.getTransactionList()){
-            if (transaction.getProduct().vendor().contains(vendorName)){
+        for (Transaction transaction : this.getTransactionList()) {
+            if (transaction.getProduct().vendor().contains(vendorName)) {
                 System.out.println(transaction);
                 foundTransactionCount++;
             }
         }
 
-        if (foundTransactionCount == 0){
+        if (foundTransactionCount == 0) {
             System.out.println("No entries found.");
         }
     }
@@ -194,28 +192,28 @@ public class Report {
 
         System.out.println("Amount: ");
         String amountStr = scanner.nextLine().trim();
-        float amount =  !amountStr.isBlank() ? Float.parseFloat(amountStr) : 0f;
+        float amount = !amountStr.isBlank() ? Float.parseFloat(amountStr) : 0f;
 
-
+        // Creating a copy here so data and csv stays in-sync
         List<Transaction> copyOfOriginalList = List.copyOf(this.getTransactionList());
 
-        if (!startDate.isBlank()){
-           copyOfOriginalList = CustomSearch.filterByStartDate(copyOfOriginalList, LocalDate.parse(startDate));
+        if (!startDate.isBlank()) {
+            copyOfOriginalList = CustomSearch.filterByStartDate(copyOfOriginalList, LocalDate.parse(startDate));
         }
 
-        if (!endDate.isBlank()){
+        if (!endDate.isBlank()) {
             copyOfOriginalList = CustomSearch.filterByEndDate(copyOfOriginalList, LocalDate.parse(endDate));
         }
 
-        if (!description.isBlank()){
+        if (!description.isBlank()) {
             copyOfOriginalList = CustomSearch.filterByDescription(copyOfOriginalList, description);
         }
 
-        if (!vendor.isBlank()){
+        if (!vendor.isBlank()) {
             copyOfOriginalList = CustomSearch.filterByVendor(copyOfOriginalList, vendor);
         }
 
-        if (!amountStr.isBlank()){
+        if (!amountStr.isBlank()) {
             copyOfOriginalList = CustomSearch.filterByPrice(copyOfOriginalList, amount);
         }
 
@@ -223,7 +221,6 @@ public class Report {
         for (Transaction transaction : copyOfOriginalList) {
             System.out.println(transaction);
         }
-
 
     }
 

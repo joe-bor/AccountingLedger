@@ -14,7 +14,7 @@ public class Transaction {
         this.product = product;
     }
 
-    public Transaction(Product product){
+    public Transaction(Product product) {
         this(LocalDate.now(), LocalTime.now(), product);
     }
 
@@ -44,6 +44,6 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return String.format("%s on %s at %s", this.getProduct(), this.getTransactionDate(), this.getTransactionTime());
+        return String.format("%s || Transaction Date: %s || Transaction Time: %s", this.getProduct(), this.getTransactionDate(), this.getTransactionTime());
     }
 }

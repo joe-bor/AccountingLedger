@@ -66,35 +66,35 @@ public class Ledger {
         }
     }
 
-    public void displayAllEntries(){
+    public void displayAllEntries() {
         System.out.println("Showing all entries:");
-        for (Transaction transaction : this.getTransactionList()){
+        for (Transaction transaction : this.getTransactionList()) {
             System.out.println(transaction);
         }
     }
 
-    public void displayDeposits(){
+    public void displayDeposits() {
         System.out.println("Showing All Deposits:");
 
         // iterate through transaction list
         // filter products whose price are positive
-        for (Transaction transaction : this.getTransactionList()){
+        for (Transaction transaction : this.getTransactionList()) {
             if (transaction.getProduct().price() > 0) {
                 System.out.println(transaction);
             }
         }
     }
 
-    public void displayPayments(){
+    public void displayPayments() {
         System.out.println("Showing All Payments:");
-        for (Transaction transaction : this.getTransactionList()){
+        for (Transaction transaction : this.getTransactionList()) {
             if (transaction.getProduct().price() < 0) {
                 System.out.println(transaction);
             }
         }
     }
 
-    public void returnToHomeScreen(){
+    public void returnToHomeScreen() {
         System.out.println("Switching to Home Screen...");
         this.setLedgerScreenShown(false);
     }
