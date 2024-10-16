@@ -63,6 +63,7 @@ public class Report {
             case "3" -> showYearToDate();
             case "4" -> showPreviousYear();
             case "5" -> showSearchByVendor();
+            case "6" -> customSearch();
             case "0" -> quitReportScreen();
             default -> System.err.println("Invalid Options. Please Try Again! ");
         }
@@ -161,5 +162,69 @@ public class Report {
         System.out.println("Switching to Ledger Screen...");
         this.setReportsScreenShown(false);
     }
+
+    public void customSearch() {
+        System.out.println("""
+                
+                Looking to narrow down the search results?
+                You can filter the entries with the following fields:
+                - Start Date
+                - End Date
+                - Description
+                - Vendor
+                - Amount
+                (If a field is left BLANK, it will not be part of the filter.)
+                
+                """);
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Start Date (YYYY-MM-DD): ");
+        String startDate = scanner.nextLine().trim();
+
+        System.out.print("End Date (YYYY-MM-DD): ");
+        String endDate = scanner.nextLine().trim();
+
+        System.out.print("Description: ");
+        String description = scanner.nextLine().trim();
+
+        System.out.print("Vendor:");
+        String vendor = scanner.nextLine().trim();
+
+        System.out.println("Amount: ");
+        String amountStr = scanner.nextLine().trim();
+        float amount =  !amountStr.isBlank() ? Float.parseFloat(amountStr) : 0f;
+
+
+        List<Transaction> copyOfOriginalList = List.copyOf(this.getTransactionList());
+
+        if (!startDate.isBlank()){
+           copyOfOriginalList = CustomSearch.filterByStartDate(copyOfOriginalList, LocalDate.parse(startDate));
+        }
+
+        if (!endDate.isBlank()){
+            copyOfOriginalList = CustomSearch.filterByEndDate(copyOfOriginalList, LocalDate.parse(endDate));
+        }
+
+        if (!description.isBlank()){
+            copyOfOriginalList = CustomSearch.filterByDescription(copyOfOriginalList, description);
+        }
+
+        if (!vendor.isBlank()){
+            copyOfOriginalList = CustomSearch.filterByVendor(copyOfOriginalList, vendor);
+        }
+
+        if (!amountStr.isBlank()){
+            copyOfOriginalList = CustomSearch.filterByPrice(copyOfOriginalList, amount);
+        }
+
+        // Print out filtered list
+        for (Transaction transaction : copyOfOriginalList) {
+            System.out.println(transaction);
+        }
+
+
+    }
+
+
 }
 
