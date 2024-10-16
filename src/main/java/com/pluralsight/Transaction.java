@@ -1,13 +1,18 @@
 package com.pluralsight;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 
 public class Transaction {
     private LocalDate transactionDate;
     private LocalTime transactionTime;
     private Product product;
 
+    // CONSTRUCTOR(S):
     public Transaction(LocalDate transactionDate, LocalTime transactionTime, Product product) {
         this.transactionDate = transactionDate;
         this.transactionTime = transactionTime;
@@ -18,6 +23,8 @@ public class Transaction {
         this(LocalDate.now(), LocalTime.now(), product);
     }
 
+
+    // GETTERS & SETTERS:
     public LocalDate getTransactionDate() {
         return transactionDate;
     }
@@ -40,6 +47,24 @@ public class Transaction {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    // OTHER METHODS:
+    public void logToCSVFile() {
+        String dateStr = this.getTransactionDate().toString();
+        String timeStr = this.getTransactionTime().truncatedTo(ChronoUnit.SECONDS).toString();
+        String description = this.getProduct().description();
+        String vendor = this.getProduct().vendor();
+        float price = this.getProduct().price();
+
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("transactions.csv", true));
+            bufferedWriter.append(String.format("%s|%s|%s|%s|%.2f\n", dateStr, timeStr, description, vendor, price));
+            System.out.println("Success! Transaction recorded to `transactions.csv`");
+            bufferedWriter.close();
+        } catch (IOException e) {
+            System.err.println(e);
+        }
     }
 
     @Override

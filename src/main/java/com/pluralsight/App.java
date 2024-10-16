@@ -3,21 +3,18 @@ package com.pluralsight;
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.regex.Pattern;
 
 public class App {
-    private static Scanner scanner = new Scanner(System.in);
     private static boolean isAppRunning = true;
     private static Ledger ledger = initLedger();
-
 
     public static void main(String[] args) {
         greetings();
         do {
             homeScreen();
-        } while (isAppRunning);
+        } while (isAppRunning());
     }
 
     private static void greetings() {
@@ -46,10 +43,11 @@ public class App {
     }
 
     private static void executeHomeScreenOptions() {
+        Scanner scanner = new Scanner(System.in);
         String option = scanner.nextLine().trim().toUpperCase();
         switch (option) {
-            case "D" -> addDeposit();
-            case "P" -> makePayment();
+            case "D" -> ledger.createTransaction(true);
+            case "P" -> ledger.createTransaction(false);
             case "L" -> goToLedgerScreen();
             case "X" -> quitApp();
             default -> System.err.println("Invalid option. Please try again!");
@@ -67,60 +65,6 @@ public class App {
 
     public static void setIsAppRunning(boolean isAppRunning) {
         App.isAppRunning = isAppRunning;
-    }
-
-    // TODO: merge with makePayment() and encapsulate in Ledger + enforce +/- floats
-    // TODO: Add a formatter for the entries (eg. capitalize 1st letter of each word)
-    private static void addDeposit() {
-        // prompt user
-        System.out.println("What are you depositing?");
-        String description = scanner.nextLine().trim();
-
-        System.out.println("Who is it from?");
-        String from = scanner.nextLine().trim();
-
-        System.out.println("How much is this?");
-        float price = scanner.nextFloat();
-        scanner.nextLine();
-
-        // create a product -> create transaction
-        Transaction transaction = new Transaction(new Product(description, from, price));
-        // then add transaction to transaction list that belongs to ledger
-        ledger.getTransactionList().add(transaction);
-        logToCSVFile(transaction);
-    }
-
-    private static void makePayment() {
-        System.out.println("What did you buy?");
-        String productDescription = scanner.nextLine().trim();
-
-        System.out.println("Who did you pay?");
-        String paidTo = scanner.nextLine().trim();
-
-        System.out.println("How much did you pay?");
-        float price = scanner.nextFloat();
-        scanner.nextLine();
-
-        Transaction transaction = new Transaction(new Product(productDescription, paidTo, -price));
-        ledger.getTransactionList().add(transaction);
-        logToCSVFile(transaction);
-    }
-
-    private static void logToCSVFile(Transaction transaction) {
-        String dateStr = transaction.getTransactionDate().toString();
-        String timeStr = transaction.getTransactionTime().truncatedTo(ChronoUnit.SECONDS).toString();
-        String description = transaction.getProduct().description();
-        String vendor = transaction.getProduct().vendor();
-        float price = transaction.getProduct().price();
-
-        try {
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("transactions.csv", true));
-            bufferedWriter.append(String.format("%s|%s|%s|%s|%.2f\n", dateStr, timeStr, description, vendor, price));
-            System.out.println("Success! Transaction recorded to `transactions.csv`");
-            bufferedWriter.close();
-        } catch (IOException e) {
-            System.err.println(e);
-        }
     }
 
     private static void goToLedgerScreen() {

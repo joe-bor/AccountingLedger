@@ -1,13 +1,12 @@
 package com.pluralsight;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Ledger {
+    private boolean isLedgerScreenShown = false;
     private List<Transaction> transactionList;
     private Report report;
-    private boolean isLedgerScreenShown = false;
 
     // CONSTRUCTOR(S):
     public Ledger(List<Transaction> transactionList) {
@@ -97,5 +96,26 @@ public class Ledger {
     public void returnToHomeScreen() {
         System.out.println("Switching to Home Screen...");
         this.setLedgerScreenShown(false);
+    }
+
+    // TODO: Add a formatter for the entries (eg. capitalize 1st letter of each word)
+    public void createTransaction(boolean isDeposit) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println(isDeposit ? "What are you depositing?" : "What did you buy?");
+        String description = scanner.nextLine().trim();
+
+        System.out.println(isDeposit ? "Who is it from?" : "Who did you pay?");
+        String from = scanner.nextLine().trim();
+
+        System.out.println(isDeposit ? "How much is this?" : "How much did you pay?");
+        float price = scanner.nextFloat();
+        scanner.nextLine();
+
+        // create a product -> create transaction
+        Transaction transaction = new Transaction(new Product(description, from, isDeposit ? price : -price));
+        transaction.logToCSVFile();
+        // then add transaction to transaction list that belongs to ledger
+        this.getTransactionList().add(transaction);
     }
 }
