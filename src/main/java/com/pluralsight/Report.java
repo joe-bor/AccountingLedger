@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Report {
     private boolean isReportsScreenShown = false;
-    private List<Transaction> transactionList = new ArrayList<>();
+    private List<Transaction> transactionList;
 
     // CONSTRUCTOR(S):
     Report(List<Transaction> transactionList) {

@@ -4,9 +4,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Pattern;
 
 public class App {
@@ -149,6 +147,9 @@ public class App {
         } catch (IOException e) {
             System.err.println(e);
         }
+
+        Collections.sort(transactionList, Comparator.comparing(Transaction::getTransactionDate));
+        Collections.reverse(transactionList);
 
         return new Ledger(transactionList);
     }
