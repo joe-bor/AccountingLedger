@@ -55,7 +55,7 @@ public class Report {
 
     public void executeReportOptions() {
         Scanner scanner = new Scanner(System.in);
-        String option = scanner.nextLine();
+        String option = Utils.validateString(scanner);
 
         switch (option) {
             case "1" -> showMonthToDate();
@@ -141,7 +141,7 @@ public class Report {
     public void showSearchByVendor() {
         System.out.println("Please provide the vendor name: ");
         Scanner scanner = new Scanner(System.in);
-        String vendorName = scanner.nextLine().trim();
+        String vendorName = Utils.validateString(scanner);
         int foundTransactionCount = 0;
 
         System.out.println("Transactions sorted by provided vendor name: ");
@@ -190,8 +190,13 @@ public class Report {
         String vendor = scanner.nextLine().trim();
 
         System.out.println("Amount: ");
-        String amountStr = scanner.nextLine().trim();
-        float amount = !amountStr.isBlank() ? Float.parseFloat(amountStr) : 0f;
+        String amountStr = Utils.validateString(scanner);
+        float amount = 0;
+        try {
+            amount = !amountStr.isBlank() ? Float.parseFloat(amountStr) : 0f;
+        } catch (NumberFormatException e) {
+            System.err.println(e);
+        }
 
         // Creating a copy here so data and csv stays in-sync
         List<Transaction> copyOfOriginalList = List.copyOf(this.getTransactionList());

@@ -53,7 +53,7 @@ public class Ledger {
 
     public void executeOptions() {
         Scanner scanner = new Scanner(System.in);
-        String option = scanner.nextLine().trim().toUpperCase();
+        String option = Utils.validateString(scanner);
 
         switch (option) {
             case "A" -> displayAllEntries();
@@ -98,22 +98,20 @@ public class Ledger {
         this.setLedgerScreenShown(false);
     }
 
-    // TODO: Add a formatter for the entries (eg. capitalize 1st letter of each word)
     public void createTransaction(boolean isDeposit) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println(isDeposit ? "What are you depositing?" : "What did you buy?");
-        String description = scanner.nextLine().trim();
+        String description = Utils.validateString(scanner);
 
         System.out.println(isDeposit ? "Who is it from?" : "Who did you pay?");
-        String from = scanner.nextLine().trim();
+        String from = Utils.validateString(scanner);
 
         System.out.println(isDeposit ? "How much is this?" : "How much did you pay?");
-        float price = scanner.nextFloat();
-        scanner.nextLine();
+        float price = Utils.validateFloat(scanner);
 
         // create a product -> create transaction
-        Transaction transaction = new Transaction(new Product(description, from, isDeposit ? price : -price));
+        Transaction transaction = new Transaction(new Product(Utils.titleCase(description), Utils.titleCase(from), isDeposit ? price : -price));
         transaction.logToCSVFile();
         // then add transaction to transaction list that belongs to ledger
         this.getTransactionList().add(transaction);

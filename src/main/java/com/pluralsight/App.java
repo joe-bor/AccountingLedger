@@ -44,7 +44,7 @@ public class App {
 
     private static void executeHomeScreenOptions() {
         Scanner scanner = new Scanner(System.in);
-        String option = scanner.nextLine().trim().toUpperCase();
+        String option = Utils.validateString(scanner);
         switch (option) {
             case "D" -> ledger.createTransaction(true);
             case "P" -> ledger.createTransaction(false);
