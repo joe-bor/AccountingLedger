@@ -45,6 +45,7 @@ public class Report {
                     [3] - Year To Date
                     [4] - Previous Year
                     [5] - Search By Vendor
+                    [6] - Custom Search
                     [0] - Back
                     
                     """);
@@ -71,11 +72,12 @@ public class Report {
 
     public void showMonthToDate() {
         Month currentMonth = LocalDate.now().getMonth();
+        int currentYear = LocalDate.now().getYear();
         int foundTransactionCount = 0;
 
         System.out.println(String.format("Showing all entries for the month of %s: ", currentMonth));
         for (Transaction transaction : this.getTransactionList()){
-            if (transaction.getTransactionDate().getMonth() == currentMonth){
+            if (transaction.getTransactionDate().getMonth() == currentMonth && transaction.getTransactionDate().getYear() == currentYear){
                 System.out.println(transaction);
                 foundTransactionCount++;
             }
