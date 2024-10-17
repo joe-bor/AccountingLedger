@@ -28,9 +28,11 @@ personal finances from the command line.
 - [IntelliJ IDEA](https://www.jetbrains.com/idea/download/)
 - A properly formatted [`transactions.csv`](#file-transactionscsv-format) file in the project directory
 
-<img src="https://skillicons.dev/icons?i=git" height="40" alt="Git"  />
-<img src="https://skillicons.dev/icons?i=java" height="40" alt="Java"  />
-<img src="https://skillicons.dev/icons?i=idea" height="40" alt="Intellij IDEA"  />
+<div>
+   <img src="https://skillicons.dev/icons?i=git" height="40" alt="Git"  />
+   <img src="https://skillicons.dev/icons?i=java" height="40" alt="Java"  />
+   <img src="https://skillicons.dev/icons?i=idea" height="40" alt="Intellij IDEA"  />
+</div>
 
 ---
 
@@ -119,6 +121,16 @@ cd AccountingLedger
 ![Custom Search](./README-Images/custom-search-example.png "Custom Search")
 
 
+<!-- Year Overview -->
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Caveat&weight=500&size=24&letterSpacing=1.2px&pause=1000&color=008AFF&background=326EFF00&center=true&vCenter=true&repeat=false&width=435&lines=Year+Overview)](https://git.io/typing-svg)
+
+![Year Overview](./README-Images/year-overview.png "Year Overview")
+
+<!-- Month Overview -->
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Caveat&weight=500&size=24&letterSpacing=1.2px&pause=1000&color=008AFF&background=326EFF00&center=true&vCenter=true&repeat=false&width=435&lines=Month+Overview)](https://git.io/typing-svg)
+
+![Month Overview](./README-Images/month-overview.png "Month Overview")
+
 ---
 
 ## File `transactions.csv` Format
@@ -148,3 +160,48 @@ The `Custom Search` feature in the `Reports` sections allows for filtering of tr
 - **Description**: Search for transactions by keywords in the description.
 - **Vendor**: Filter transactions by vendor name.
 - **Amount**: Find transactions with a specific amount.
+
+---
+
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Caveat&weight=500&size=36&letterSpacing=1.2px&pause=1000&color=b4a1ff&background=326EFF00&center=true&vCenter=true&repeat=false&width=435&lines=My+Favorite+Code+Snippet)](https://git.io/typing-svg)
+
+```java
+public void yearlyOverview() {
+   int currYear = LocalDate.now().getYear();
+
+   System.out.printf("""
+                       --- %d Overview ---
+           Curious about how your finances are looking this year?
+           Look at the breakdown below:
+           
+           """, currYear);
+
+   float totalDeposits = this.getTransactionList().stream()
+           .filter(transaction -> transaction.getTransactionDate().getYear() == currYear)
+           .filter(transaction -> transaction.getProduct().price() > 0)
+           .map(transaction -> transaction.getProduct().price())
+           .reduce(0f, (acc, curr) -> acc + curr);
+
+   float totalPayments = this.getTransactionList().stream()
+           .filter(transaction -> transaction.getTransactionDate().getYear() == currYear)
+           .filter(transaction -> transaction.getProduct().price() < 0)
+           .map(transaction -> transaction.getProduct().price())
+           .reduce(0f, (acc, curr) -> acc + curr);
+
+   float netIncome = totalPayments + totalDeposits;
+
+   System.out.printf("Total Income: %.2f\n", totalDeposits);
+   System.out.printf("Total Expenses: %.2f\n", totalPayments);
+   System.out.printf("Net Income for the year: %.2f\n", netIncome);
+}
+```
+
+With the extra time I decided to dive deeper into [Java's Streams API](https://www.oracle.com/technical-resources/articles/java/ma14-java-se-8-streams.html) and apply it to the current codebase.
+
+Every method chained in the pipeline would have been another for loop if I had not use `Streams`. This could have been used in the `Custom Search` feature also for more brevity.
+
+Some of the few things I briefly learned about are:
+   - Collections API
+   - Streams API
+   - Lambda Expressions
+   - Predicate Functions
