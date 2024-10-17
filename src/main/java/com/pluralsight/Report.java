@@ -45,6 +45,8 @@ public class Report {
                     [4] - Previous Year
                     [5] - Search By Vendor
                     [6] - Custom Search
+                    [7] - Year Overview
+                    [8] - Month Overview
                     [0] - Back
                     
                     """);
@@ -64,6 +66,8 @@ public class Report {
             case "4" -> showPreviousYear();
             case "5" -> showSearchByVendor();
             case "6" -> customSearch();
+            case "7" -> yearlyOverview();
+            case "8" -> monthlyOverview();
             case "0" -> quitReportScreen();
             default -> System.err.println("Invalid Options. Please Try Again! ");
         }
@@ -223,13 +227,68 @@ public class Report {
         }
 
         // Print out filtered list
-        System.out.printf("\n%d transactions found.\n",copyOfOriginalList.size());
+        System.out.printf("\n%d transactions found.\n", copyOfOriginalList.size());
         for (Transaction transaction : copyOfOriginalList) {
             System.out.println(transaction);
         }
 
     }
 
+    public void monthlyOverview(){
+        Month currMonth = LocalDate.now().getMonth();
+        System.out.printf("""
+                            --- %s Overview ---
+                How is your month going?
+                Let's have a look:
+                
+                """, currMonth);
 
+        float totalDeposits = this.getTransactionList().stream()
+                .filter(transaction -> transaction.getTransactionDate().getYear() == LocalDate.now().getYear())
+                .filter(transaction -> transaction.getTransactionDate().getMonthValue() == LocalDate.now().getMonthValue())
+                .filter(transaction -> transaction.getProduct().price() > 0)
+                .map(transaction -> transaction.getProduct().price())
+                .reduce(0f, (acc, curr) -> acc + curr);
+
+        float totalPayments = this.getTransactionList().stream()
+                .filter(transaction -> transaction.getTransactionDate().getYear() == LocalDate.now().getYear())
+                .filter(transaction -> transaction.getTransactionDate().getMonthValue() == LocalDate.now().getMonthValue())
+                .filter(transaction -> transaction.getProduct().price() < 0)
+                .map(transaction -> transaction.getProduct().price())
+                .reduce(0f, (acc, curr) -> acc + curr);
+
+        float netIncome = totalPayments + totalDeposits;
+
+        System.out.printf("Total Income: %.2f\n", totalDeposits);
+        System.out.printf("Total Expenses: %.2f\n", totalPayments);
+        System.out.printf("Net Income for the year: %.2f\n", netIncome);
+    }
+
+    public void yearlyOverview() {
+        System.out.println("""
+                            --- Yearly Income & Net Overview ---
+                Curious about how your finances are looking this year?
+                Look at the breakdown below:
+                
+                """);
+
+        float totalDeposits = this.getTransactionList().stream()
+                .filter(transaction -> transaction.getTransactionDate().getYear() == LocalDate.now().getYear())
+                .filter(transaction -> transaction.getProduct().price() > 0)
+                .map(transaction -> transaction.getProduct().price())
+                .reduce(0f, (acc, curr) -> acc + curr);
+
+        float totalPayments = this.getTransactionList().stream()
+                .filter(transaction -> transaction.getTransactionDate().getYear() == LocalDate.now().getYear())
+                .filter(transaction -> transaction.getProduct().price() < 0)
+                .map(transaction -> transaction.getProduct().price())
+                .reduce(0f, (acc, curr) -> acc + curr);
+
+        float netIncome = totalPayments + totalDeposits;
+
+        System.out.printf("Total Income: %.2f\n", totalDeposits);
+        System.out.printf("Total Expenses: %.2f\n", totalPayments);
+        System.out.printf("Net Income for the year: %.2f\n", netIncome);
+    }
 }
 
