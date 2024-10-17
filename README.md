@@ -1,6 +1,10 @@
-# Accounting Ledger
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=36&letterSpacing=1.2px&pause=1000&color=56459A&background=326EFF00&center=true&vCenter=true&repeat=false&width=435&lines=Accounting+Ledger)](https://git.io/typing-svg)
 
-This is **Java-based CLI application** for tracking financial transactions. The app allows you to easily track deposits, make payments and generate reports for your transactions. The ledger provides a simple and effective way to manage personal finances from the command line.
+This is **Java-based CLI application** for tracking financial transactions. The app allows you to easily track deposits,
+make payments and generate reports for your transactions. The ledger provides a simple and effective way to manage
+personal finances from the command line.
+
+[Link to GitHub Project](https://github.com/users/joe-bor/projects/5/views/1)
 
 ---
 
@@ -23,26 +27,32 @@ This is **Java-based CLI application** for tracking financial transactions. The 
 - [Java 17](https://www.oracle.com/th/java/technologies/downloads/) or Higher
 - [IntelliJ IDEA](https://www.jetbrains.com/idea/download/)
 - A properly formatted [`transactions.csv`](#file-transactionscsv-format) file in the project directory
+
+<img src="https://skillicons.dev/icons?i=git" height="40" alt="Git"  />
+<img src="https://skillicons.dev/icons?i=java" height="40" alt="Java"  />
+<img src="https://skillicons.dev/icons?i=idea" height="40" alt="Intellij IDEA"  />
+
 ---
 
 ## Usage
 
 1. Clone the repo:
+
 ```bash
 git clone https://github.com/joe-bor/AccountingLedger.git
 cd AccountingLedger
 ```
 
 2. Launch Project in IntelliJ IDEA:
-   - Click `Open` and select project directory.
-   - Go to `Build` > `Build Project`
+    - Click `Open` and select project directory.
+    - Go to `Build` > `Build Project`
 
 3. Run the Application:
-   - Open `App.java` file inside `src/com/pluralsight` directory.
-   - Right-click on the `App` class and select `Run 'App.main()'`
-   
+    - Open `App.java` file inside `src/com/pluralsight` directory.
+    - Right-click on the `App` class and select `Run 'App.main()'`
+
 4. Interact with the CLI:
-   - Follow the instructions displayed in the terminal.
+    - Follow the instructions displayed in the terminal.
 
 ---
 
@@ -59,18 +69,18 @@ cd AccountingLedger
 ## Features
 
 1. **Deposit and Payment Tracking**
-   - Log Deposits and payments to maintain up-to-date-ledger.
+    - Log Deposits and payments to maintain up-to-date-ledger.
 2. **Ledger Management**
-   - View transaction, filtered by deposits, payments, or all entries.
+    - View transaction, filtered by deposits, payments, or all entries.
 3. **Reports Generation**
-   - Generate reports for:
-     - Month-to-Date transactions
-     - Previous Month transactions
-     - Year-to-Date transactions
-     - Previous Year transactions
-     - Search by Vendor or [Custom Search](#Custom-Search-Capabilities)
+    - Generate reports for:
+        - Month-to-Date transactions
+        - Previous Month transactions
+        - Year-to-Date transactions
+        - Previous Year transactions
+        - Search by Vendor or [Custom Search](#Custom-Search-Capabilities)
 4. **CSV Integration**
-   - All transactions are stored and retrieved from `transactions.csv` for persistence.
+    - All transactions are stored and retrieved from `transactions.csv` for persistence.
 
 ---
 
@@ -83,7 +93,7 @@ cd AccountingLedger
 
 ## Screenshots
 
-**Project Structure** 
+**Project Structure**
 
 ![Project Structure](./README-Images/project-structure.png "Project Structure")
 
@@ -91,6 +101,7 @@ cd AccountingLedger
 ---
 
 ## File `transactions.csv` Format
+
 Each entry to this file must follow the following structure:
 
 ```text
@@ -108,7 +119,9 @@ date|time|description|vendor|amount
 ---
 
 ## Custom Search Capabilities
+
 The `Custom Search` feature in the `Reports` sections allows for filtering of transaction using the following criteria:
+
 - **Start Date**: Find transactions after a specific date.
 - **End Date**: Find transactions before a specific date.
 - **Description**: Search for transactions by keywords in the description.
