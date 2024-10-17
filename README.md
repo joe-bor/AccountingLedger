@@ -1,4 +1,4 @@
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=36&letterSpacing=1.2px&pause=1000&color=56459A&background=326EFF00&center=true&vCenter=true&repeat=false&width=435&lines=Accounting+Ledger)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Caveat&weight=700&size=36&letterSpacing=1.2px&pause=1000&color=FE6500&background=326EFF00&center=true&vCenter=true&repeat=false&width=435&lines=Accounting+Ledger)](https://git.io/typing-svg)
 
 This is **Java-based CLI application** for tracking financial transactions. The app allows you to easily track deposits,
 make payments and generate reports for your transactions. The ledger provides a simple and effective way to manage
@@ -93,9 +93,30 @@ cd AccountingLedger
 
 ## Screenshots
 
-**Project Structure**
+<!-- Project Structure -->
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Caveat&weight=500&size=24&letterSpacing=1.2px&pause=1000&color=008AFF&background=326EFF00&center=true&vCenter=true&repeat=false&width=435&lines=Project+Structure)](https://git.io/typing-svg)
 
 ![Project Structure](./README-Images/project-structure.png "Project Structure")
+
+<!-- Home Screen -->
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Caveat&weight=500&size=24&letterSpacing=1.2px&pause=1000&color=008AFF&background=326EFF00&center=true&vCenter=true&repeat=false&width=435&lines=Home+Screen)](https://git.io/typing-svg)
+
+![Home Screen](./README-Images/home-screen.png "Home Screen")
+
+<!-- Ledger Screen -->
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Caveat&weight=500&size=24&letterSpacing=1.2px&pause=1000&color=008AFF&background=326EFF00&center=true&vCenter=true&repeat=false&width=435&lines=Ledger+Screen)](https://git.io/typing-svg)
+
+![Ledger Screen](./README-Images/ledger-screen.png "Ledger Screen")
+
+<!-- Reports Screen -->
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Caveat&weight=500&size=24&letterSpacing=1.2px&pause=1000&color=008AFF&background=326EFF00&center=true&vCenter=true&repeat=false&width=435&lines=Reports+Screen)](https://git.io/typing-svg)
+
+![Reports Screen](./README-Images/report-screen.png "Reports Screen")
+
+<!-- Custom Search -->
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Caveat&weight=500&size=24&letterSpacing=1.2px&pause=1000&color=008AFF&background=326EFF00&center=true&vCenter=true&repeat=false&width=435&lines=Custom+Search)](https://git.io/typing-svg)
+
+![Custom Search](./README-Images/custom-search-example.png "Custom Search")
 
 
 ---

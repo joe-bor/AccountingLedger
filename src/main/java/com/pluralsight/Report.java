@@ -223,6 +223,7 @@ public class Report {
         }
 
         // Print out filtered list
+        System.out.printf("\n%d transactions found.\n",copyOfOriginalList.size());
         for (Transaction transaction : copyOfOriginalList) {
             System.out.println(transaction);
         }
