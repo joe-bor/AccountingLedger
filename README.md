@@ -4,6 +4,19 @@ This is **Java-based CLI application** for tracking financial transactions. The 
 
 ---
 
+## Table of Contents
+
+- [Requirements](#requirements)
+- [Usage](#usage)
+- [How it Works](#how-it-works)
+- [Features](#features)
+- [Limitations](#limitations)
+- [Screenshots](#screenshots)
+- [File `transactions.csv` Format](#file-transactionscsv-format)
+- [Custom Search Capabilities](#custom-search-capabilities)
+
+---
+
 ## Requirements
 
 - [Git](https://git-scm.com/downloads)
@@ -25,7 +38,7 @@ cd AccountingLedger
    - Go to `Build` > `Build Project`
 
 3. Run the Application:
-   - Open `App.java` file insidei `src/com/pluralsight` directory.
+   - Open `App.java` file inside `src/com/pluralsight` directory.
    - Right-click on the `App` class and select `Run 'App.main()'`
    
 4. Interact with the CLI:

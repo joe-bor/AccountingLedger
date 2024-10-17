@@ -36,7 +36,7 @@ public class Report {
         do {
             System.out.println("""
                     
-                    ----- Reports Screen -----
+                                ----- Reports Screen -----
                     Which reports would you like to see?
                     
                     [1] - Month To Date

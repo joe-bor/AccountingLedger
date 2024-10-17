@@ -36,7 +36,7 @@ public class Ledger {
         do {
             System.out.println("""
                     
-                    ----- Ledger Screen -----
+                                ----- Ledger Screen -----
                     Which entries would you like to see? Newest entries are shown first.
                     
                     [A] - All entries
@@ -59,7 +59,10 @@ public class Ledger {
             case "A" -> displayAllEntries();
             case "D" -> displayDeposits();
             case "P" -> displayPayments();
-            case "R" -> report.displayScreen();
+            case "R" -> {
+                System.out.println("Switching to Reports Screen...");
+                report.displayScreen();
+            }
             case "H" -> returnToHomeScreen();
             case null, default -> System.err.println("Invalid option. Please try again!");
         }

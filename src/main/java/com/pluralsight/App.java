@@ -20,7 +20,7 @@ public class App {
     private static void greetings() {
         System.out.println("""
                 
-                ====== Accounting Ledger =====
+                            ====== Accounting Ledger =====
                 
                 Welcome to your personal accounting ledger.
                 Track deposits, payments, and review your ledger with ease.
@@ -30,7 +30,7 @@ public class App {
     private static void homeScreen() {
         System.out.println("""
                 
-                ----- HOME SCREEN -----
+                              ----- HOME SCREEN -----
                 What would you like to do?
                 [D] - Add Deposit
                 [P] - Make Payment
