@@ -234,8 +234,10 @@ public class Report {
 
     }
 
-    public void monthlyOverview(){
+    public void monthlyOverview() {
         Month currMonth = LocalDate.now().getMonth();
+        int currYear = LocalDate.now().getYear();
+
         System.out.printf("""
                             --- %s Overview ---
                 How is your month going?
@@ -244,14 +246,14 @@ public class Report {
                 """, currMonth);
 
         float totalDeposits = this.getTransactionList().stream()
-                .filter(transaction -> transaction.getTransactionDate().getYear() == LocalDate.now().getYear())
+                .filter(transaction -> transaction.getTransactionDate().getYear() == currYear)
                 .filter(transaction -> transaction.getTransactionDate().getMonthValue() == LocalDate.now().getMonthValue())
                 .filter(transaction -> transaction.getProduct().price() > 0)
                 .map(transaction -> transaction.getProduct().price())
                 .reduce(0f, (acc, curr) -> acc + curr);
 
         float totalPayments = this.getTransactionList().stream()
-                .filter(transaction -> transaction.getTransactionDate().getYear() == LocalDate.now().getYear())
+                .filter(transaction -> transaction.getTransactionDate().getYear() == currYear)
                 .filter(transaction -> transaction.getTransactionDate().getMonthValue() == LocalDate.now().getMonthValue())
                 .filter(transaction -> transaction.getProduct().price() < 0)
                 .map(transaction -> transaction.getProduct().price())
@@ -265,21 +267,23 @@ public class Report {
     }
 
     public void yearlyOverview() {
-        System.out.println("""
-                            --- Yearly Income & Net Overview ---
+        int currYear = LocalDate.now().getYear();
+
+        System.out.printf("""
+                            --- %d Overview ---
                 Curious about how your finances are looking this year?
                 Look at the breakdown below:
                 
-                """);
+                """, currYear);
 
         float totalDeposits = this.getTransactionList().stream()
-                .filter(transaction -> transaction.getTransactionDate().getYear() == LocalDate.now().getYear())
+                .filter(transaction -> transaction.getTransactionDate().getYear() == currYear)
                 .filter(transaction -> transaction.getProduct().price() > 0)
                 .map(transaction -> transaction.getProduct().price())
                 .reduce(0f, (acc, curr) -> acc + curr);
 
         float totalPayments = this.getTransactionList().stream()
-                .filter(transaction -> transaction.getTransactionDate().getYear() == LocalDate.now().getYear())
+                .filter(transaction -> transaction.getTransactionDate().getYear() == currYear)
                 .filter(transaction -> transaction.getProduct().price() < 0)
                 .map(transaction -> transaction.getProduct().price())
                 .reduce(0f, (acc, curr) -> acc + curr);
