@@ -40,7 +40,7 @@ public abstract class CustomSearch {
     public static List<Transaction> filterByVendor(List<Transaction> listToBeFiltered, String vendorName){
         List<Transaction> filteredList = new ArrayList<>();
         for (Transaction transaction : listToBeFiltered){
-            if (transaction.getProduct().description().contains(vendorName)){
+            if (transaction.getProduct().vendor().contains(vendorName)){
                 filteredList.add(transaction);
             }
         }

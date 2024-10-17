@@ -164,8 +164,9 @@ public class Report {
 
     public void customSearch() {
         System.out.println("""
-                
+                            ----- Custom Search -----
                 Looking to narrow down the search results?
+                
                 You can filter the entries with the following fields:
                 - Start Date
                 - End Date
@@ -189,8 +190,8 @@ public class Report {
         System.out.print("Vendor:");
         String vendor = scanner.nextLine().trim();
 
-        System.out.println("Amount: ");
-        String amountStr = Utils.validateString(scanner);
+        System.out.print("Amount: ");
+        String amountStr = scanner.nextLine().trim();
         float amount = 0;
         try {
             amount = !amountStr.isBlank() ? Float.parseFloat(amountStr) : 0f;
